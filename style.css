@@ -213,6 +213,7 @@ body{
     background-color: #4E454A;
     margin: 100px auto;
     overflow: hidden; /* 画像が枠からはみ出さないように */
+    z-index: 9;
 }
 
 .frame img {
@@ -625,21 +626,158 @@ body{
 
 
   /* スマホ版対応 */
-  @media (max-width: 768px){
+  @media (max-width: 767px){
+
+    #loading {
+        width: 150px;
+        height: 75px;
+        margin-left: -75px;
+    }
+
+    .pack-man {
+        width: 40px;
+        height: 80px;
+        border-radius: 40px 0 0 40px;
+    }
+
+    .pack-man::before,
+    .pack-man::after {
+        width: 80px;
+        height: 40px;
+    }
+
+    .pack-man::before {
+        top: 40px;
+        transform-origin: center top;
+        animation: eat1 cubic-bezier(0.55, 0.06, 0.68, 0.19) .5s infinite alternate;
+    }
+
+    .pack-man::after {
+        top: 0;
+        transform-origin: center bottom;
+        animation: eat2 cubic-bezier(0.55, 0.06, 0.68, 0.19) .5s infinite alternate;
+    }
+
+    .fuels {
+        top: 30px;
+        left: 90px;
+        width: 160px;
+        height: 20px;
+    }
+
+    .fuels div {
+        width: 20px;
+        height: 20px;
+        background: #F0EFE8;
+        border-radius: 50%;
+        animation: translate1 ease-out 1s infinite;
+    }
+
+    .fuels div + div {
+        margin-left: 40px;
+    }
+
+    .fuels div:last-child {
+        position: absolute;
+        right: 0;
+        transform: scale(0);
+        animation: translate2 linear 1s infinite;
+    }
+
+    .official {
+        margin-top: 60%;
+        font-size: 0.5rem;
+        margin-left: 50px;
+    }
 
     .frame{
         height: 40vh;
     }
     
+    .slider{
+        margin-top: -5vw;
+
+    }
+
     .slider-decoration{
         right: 3%;
         bottom: 3%;
     }
 
+    .header-right{
+        margin-right: 10px;
+        font-size: 2.2vw;
+    }
+
+    .header-text{
+        margin-left: 4vw;
+        margin-top: 6vw;
+    }
+
     .philosophy{
-        transform: translateY(-10vh);
+        margin-top: -10vw;
         top: 50;
         padding-bottom: 2vh;
     }
 
+    .philosophy-text{
+        font-size: 0.9rem;
+        padding-top: 8%;
+        margin: 0 5%;
+    }
+
+    .big{
+        font-size: 1.4rem;
+    }
+
+
+    .profile-main{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-left{
+        margin-left: 0;
+        margin-top: 5vw;
+    }
+
+    .circle{
+        width: 45vw;
+        height: 45vw;
+    }
+
+    .circle-text{
+        font-size: 1rem;
+    }
+
+    .name{
+        font-size: 5vw;
+    }
+
+    .bigname{
+        font-size: 16vw;
+    }
+
+    .profile-name{
+        padding-right: 3%;
+    }
+
+    .sentence{
+        font-size: 1rem;
+    }
+
+    .sns{
+        justify-content: space-around;
+        padding-right: 8%;
+        padding-top: 5%;
+    }
+
+    .sns-title{
+        font-size: 0.8rem;
+    }
+
+    .sns-img{
+        width: 7vw;
+        height: 7vw;
+    }
   }
