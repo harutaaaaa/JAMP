@@ -249,6 +249,8 @@ body{
 .philosophy {
     position: sticky; /* z-index を適用できるように */
     top: 0;
+    width: 100%;
+    height: fit-content;
     z-index: 1; /* 他のセクションより低い値を設定 */
     text-align: center;
     padding-bottom: 55vh;
@@ -619,4 +621,25 @@ body{
     padding-top: 3.4vh;
     font-size: 1.3vw;
     font-family: "Zen Kaku Gothic New", sans-serif;
+  }
+
+
+  /* スマホ版対応 */
+  @media (max-width: 768px){
+
+    .frame{
+        height: 40vh;
+    }
+    
+    .slider-decoration{
+        right: 3%;
+        bottom: 3%;
+    }
+
+    .philosophy{
+        transform: translateY(-10vh);
+        top: 50;
+        padding-bottom: 2vh;
+    }
+
   }
