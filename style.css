@@ -780,4 +780,46 @@ body{
         width: 7vw;
         height: 7vw;
     }
+
+    .blog{
+        height: 580px;
+    }
+
+    .Box-Container{
+        margin-top: 5%;
+    }
+
+    .Box{
+        width: 290px;
+        height: 440px;
+        margin-left: 45px;
+    }
+
+    .Arrow{
+        width: 35px;
+        height: 35px;
+        font-size: 30px;
+    }
+
+    .box-decoration{
+        width: 90px;
+        height: 80px;
+        top: -30px;
+        left: -30px;
+    }
+
+    .decoration-text{
+        font-size: 40px;
+        margin-top: 20px;
+    }
+
+    .box-img{
+        width: 260px;
+        height: 170px;
+    }
+
+    .box-contents-text{
+        font-size: 0.9rem;
+        margin: 10px;
+    }
   }
