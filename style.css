@@ -183,8 +183,6 @@ body{
     position: absolute;
 }
 
-
-
 .header-right{
     display: flex;
     justify-content: space-between;
@@ -233,8 +231,6 @@ body{
 
 .slider-decoration {
     position: absolute;
-    bottom: 10%;
-    right: 10%;
     width: 10%;
     height: 10%;
     max-width: 130px;
@@ -270,26 +266,31 @@ body{
     font-size: 3vw;
 }
 
-/* .profile { 
-    position: relative;
-    z-index: 10;
-    background: #4E454A; /* 背景色
-    color: #F0EFE8;
-    padding: 100px 0; /* セクション全体の余白を調整 
-    clip-path: polygon(
-        0 10%, 
-        15% 12%, 
-        30% 8%, 
-        45% 11%, 
-        60% 9%, 
-        75% 12%, 
-        90% 10%, 
-        100% 12%, 
-        100% 100%, 
-        0 100%
-    );
-    /* 緩やかな波線を上部に配置 
-} */
+.philosophy-decoration{
+    position: absolute;
+    width: 15%;
+    height: 15%;
+    z-index: -1; /* 他の要素に隠れないようにz-indexを追加 */
+}
+
+.de-right{
+    max-width: 190px;
+    max-height: 160px;
+    background-color: #4A7809;
+    opacity: 0.7;
+    top: 27%; /* 右下に配置 */
+    right: 7%;  /* 右下に配置 */
+    border-radius: 49% 51% 31% 69% / 63% 49% 51% 37%  ;
+}
+
+.de-left{
+    max-width: 235px;
+    max-height: 185px;
+    background-color: #ffe4e4;
+    top: 42%; /* 右下に配置 */
+    left: 7%;  /* 右下に配置 */
+    border-radius: 38% 62% 60% 40% / 35% 58% 42% 65%;
+}
 
 .profile {
     position: relative;
@@ -628,6 +629,12 @@ body{
   /* スマホ版対応 */
   @media (max-width: 767px){
 
+    .cursor{
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
     #loading {
         width: 150px;
         height: 75px;
@@ -706,12 +713,16 @@ body{
 
     .header-right{
         margin-right: 10px;
-        font-size: 2.2vw;
+        font-size: 2.7vw;
     }
 
     .header-text{
         margin-left: 4vw;
         margin-top: 6vw;
+    }
+
+    .webta{
+        width: 9vw;
     }
 
     .philosophy{
@@ -729,7 +740,6 @@ body{
     .big{
         font-size: 1.4rem;
     }
-
 
     .profile-main{
         flex-direction: column;
@@ -791,7 +801,7 @@ body{
 
     .Box{
         width: 290px;
-        height: 440px;
+        height: 445px;
         margin-left: 45px;
     }
 
@@ -821,5 +831,27 @@ body{
     .box-contents-text{
         font-size: 0.9rem;
         margin: 10px;
+    }
+
+    .QandA-title{
+        font-size: 1.5rem;
+        margin-bottom: 10%;
+    }
+
+    .faq-question{
+        font-size: 0.6rem;
+    }
+
+    .faq-answer{
+        font-size: 0.6rem;
+    }
+
+    .footer{
+        height: 5vh;
+    }
+
+    .footer-text{
+        padding-top: 1.7vh;
+        font-size: 0.6rem;
     }
   }
