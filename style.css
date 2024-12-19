@@ -173,6 +173,11 @@ body{
         justify-content: space-between;
 }
 
+.header-right .header-text {
+    text-decoration: none; /* 下線を消す */
+    cursor: none;
+}
+
 .webta{
     width: 7vw;
     max-width: 100px;
