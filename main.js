@@ -229,3 +229,26 @@ document.querySelectorAll('.faq-question').forEach(question => {
     });
   });
 
+const photos = [
+    'img/sea.png', // 最初の画像のパス
+    'img/usj.jpg',
+    'img/mountain.png',
+    'img/young.jpg',
+    'img/maruta.png',
+];
+
+let currentnumber = 0;
+
+const circleElement = document.getElementById('slideshow-circle');
+
+// 初期画像を設定
+circleElement.style.backgroundImage = `url(${photos[currentnumber]})`;
+circleElement.style.backgroundSize = 'cover'; // 画像を全面に表示
+circleElement.style.backgroundPosition = 'center'; // 画像を中央揃え
+
+// クリックイベントを追加
+circleElement.addEventListener('click', () => {
+    currentnumber = (currentnumber + 1) % photos.length; // 次の画像へ
+    circleElement.style.backgroundImage = `url(${photos[currentnumber]})`;
+});
+
