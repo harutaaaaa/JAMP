@@ -115,7 +115,15 @@ textObserver.observe(document.querySelector('.six'));
 //blogの矢印横移動
 let boxPosition = 0; // 初期位置
 
-// 左右矢印の移動処理
+
+
+
+ // 初期位置
+
+// メディアクエリでスマホ版の条件を設定
+const isMobile = window.matchMedia('(max-width: 767px)');
+
+// 左右矢印のイベントリスナーを設定
 document.querySelector('.Arrow.left').addEventListener('click', () => {
     moveBox('left');
 });
@@ -124,54 +132,85 @@ document.querySelector('.Arrow.right').addEventListener('click', () => {
     moveBox('right');
 });
 
-// 移動するための関数
 function moveBox(direction) {
     const boxContainer = document.querySelector('.Box-Container');
-    const boxWidth = document.querySelector('.Box').offsetWidth + 10; // Boxの幅 + マージン
-    const containerWidth = boxContainer.offsetWidth;
+    const box = document.querySelector('.Box');
+    const boxStyles = getComputedStyle(box);
+    
+    // Boxの幅 + 左右のマージンを正確に計算
+    const boxWidth = box.offsetWidth 
+                     + parseFloat(boxStyles.marginLeft) 
+                     + parseFloat(boxStyles.marginRight);
+    
+    const containerWidth = document.querySelector('.Container').offsetWidth;
     const totalBoxes = document.querySelectorAll('.Box').length;
 
-    // 最大位置を計算（画面内に収められる最大数）
-    const maxPosition = totalBoxes - Math.floor(containerWidth / boxWidth);
+    if (isMobile.matches) {
+        // スマホ版：1Box分だけ動く
+        const maxPosition = totalBoxes - Math.ceil(containerWidth / boxWidth);
 
-    if (direction === 'right') {
-        // 右に移動（最右のBoxに到達した場合は移動しない）
-        if (boxPosition < maxPosition) {
+        if (direction === 'right' && boxPosition < maxPosition) {
             boxPosition++;
-        }
-    } else if (direction === 'left') {
-        // 左に移動（最左のBoxに到達した場合は移動しない）
-        if (boxPosition > 0) {
+        } else if (direction === 'left' && boxPosition > 0) {
             boxPosition--;
         }
+
+        boxContainer.style.transform = `translateX(-${boxWidth * boxPosition}px)`;
+    } else {
+        // PC版：全体の幅を考慮して移動
+        const maxPosition = Math.max(0, (totalBoxes * boxWidth - containerWidth) / boxWidth);
+
+        if (direction === 'right' && boxPosition < maxPosition) {
+            boxPosition++;
+        } else if (direction === 'left' && boxPosition > 0) {
+            boxPosition--;
+        }
+
+        boxContainer.style.transform = `translateX(-${boxWidth * boxPosition}px)`;
     }
 
-    // スクロールするための位置設定
-    boxContainer.style.transform = `translateX(-${boxWidth * boxPosition}px)`;
-
     // 矢印の表示/非表示を制御
-    updateArrows(boxPosition, maxPosition);
+    updateArrows(boxPosition, isMobile.matches ? totalBoxes - 1 : Math.floor(totalBoxes * boxWidth / containerWidth));
 }
 
-// 矢印の表示/非表示を更新する関数
+// 矢印の表示/非表示を更新
 function updateArrows(position, maxPosition) {
     const leftArrow = document.querySelector('.Arrow.left');
     const rightArrow = document.querySelector('.Arrow.right');
 
     // 左矢印を表示/非表示
     if (position === 0) {
-        leftArrow.classList.add('hidden');  // 左端に到達したら左矢印を非表示
+        leftArrow.classList.add('hidden'); // 左端に到達したら非表示
     } else {
         leftArrow.classList.remove('hidden'); // 左矢印を表示
     }
 
     // 右矢印を表示/非表示
-    if (position === maxPosition) {
-        rightArrow.classList.add('hidden'); // 右端に到達したら右矢印を非表示
-    } else {
-        rightArrow.classList.remove('hidden'); // 右矢印を表示
-    }
+    //if (position >= maxPosition) {
+        //rightArrow.classList.add('hidden'); // 右端に到達したら非表示
+    //} else {
+        //rightArrow.classList.remove('hidden'); // 右矢印を表示
+    //}
 }
+
+// ページ読み込み時に矢印の状態を初期設定
+document.addEventListener('DOMContentLoaded', () => {
+    const box = document.querySelector('.Box');
+    const boxStyles = getComputedStyle(box);
+    const boxWidth = box.offsetWidth 
+                     + parseFloat(boxStyles.marginLeft) 
+                     + parseFloat(boxStyles.marginRight);
+    const containerWidth = document.querySelector('.Container').offsetWidth;
+    const totalBoxes = document.querySelectorAll('.Box').length;
+
+    const maxPosition = isMobile.matches
+        ? totalBoxes - 1
+        : Math.max(0, totalBoxes * boxWidth - containerWidth) / boxWidth;
+
+    updateArrows(boxPosition, maxPosition);
+});
+
+
 
 // ボタンを取得
 const btn = document.getElementById('btn');
