@@ -187,6 +187,7 @@ const Arrowes = document.querySelectorAll('.Arrow');
 // 背景色や文字色を切り替えるためのフラグ
 let isColorChanged = false;
 
+
 // ボタンがクリックされた時の処理
 btn.addEventListener('click', () => {
     if (isColorChanged) {

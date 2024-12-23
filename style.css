@@ -416,6 +416,7 @@ body{
 
 .sns-contents{
     margin-left: 13%;
+    cursor: none;
 }
 
 .sns-img{
